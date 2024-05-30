@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer'
 
 export default function HomePage() {
   return (
-    <div>HomePage
+    <div className='text-primary-50'>HomePage
         <HeroSection/>
         <Footer/>
     </div>
