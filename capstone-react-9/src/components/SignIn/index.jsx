@@ -1,10 +1,13 @@
 import React from 'react'
 import BannerSignin from './BannerSignin'
+import FormSignin from './FormSignin'
 
 export default function SignIn() {
   return (
     <div>
-        <BannerSignin/>
+    <BannerSignin>
+      <FormSignin/>
+    </BannerSignin>
     </div>
   )
 }
