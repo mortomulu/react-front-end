@@ -12,12 +12,7 @@ export default function featureSection() {
                 <p className='text-2xl text-white'>“Jelajahi Pilihan Terbaik Fitur Aplikasi Kami: Temukan Fitur Favoritmu!”</p>
             </div>
         </div>
-        <div className='flex justify-center gap-2 py-16'>
-            <CardBenefit/>
-            <CardBenefit/>
-            <CardBenefit/>
-            <CardBenefit/>
-        </div>
+        <CardBenefit/>
     </div>
   )
 }
