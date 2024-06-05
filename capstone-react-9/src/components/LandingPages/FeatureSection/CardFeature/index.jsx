@@ -15,7 +15,7 @@ export default function cardBenefit() {
               <h1 className="text-xl font-semibold">Tambak Aquaculture</h1>
           </div>
           <div>
-              <p className='text-center'>Menjual berbagai jenis tambak akuakultur yang dapat dipantau realtime</p>
+              <p className='text-center p-5'>Menjual berbagai jenis tambak akuakultur yang dapat dipantau realtime</p>
           </div>
       </div>
       <div style={{ backgroundImage: `url(${imageFeature2})`, height: `569px`, width: `320px` }} className='flex flex-col justify-center items-center gap-1 pt-64'>
@@ -26,7 +26,7 @@ export default function cardBenefit() {
               <h1 className="text-xl font-semibold">Produk Akuakultur</h1>
           </div>
           <div>
-              <p className='text-center'>Menjual berbagai pilihan produk akuakultur</p>
+              <p className='text-center p-5'>Menjual berbagai pilihan produk akuakultur</p>
           </div>
       </div>
       <div style={{ backgroundImage: `url(${imageFeature3})`, height: `569px`, width: `320px` }} className='flex flex-col justify-center items-center gap-1 pt-64'>
@@ -37,7 +37,7 @@ export default function cardBenefit() {
               <h1 className="text-xl font-semibold">Memantau Hasil Tambak</h1>
           </div>
           <div>
-              <p className='text-center'>Mendapat kesempatan mempunyai tambak dan menikmati hasil dari tambak</p>
+              <p className='text-center p-5'>Mendapat kesempatan mempunyai tambak dan menikmati hasil dari tambak</p>
           </div>
       </div>
       <div style={{ backgroundImage: `url(${imageFeature4})`, height: `569px`, width: `320px` }} className='flex flex-col justify-center items-center gap-1 pt-64'>
@@ -48,7 +48,7 @@ export default function cardBenefit() {
               <h1 className="text-xl font-semibold">Artikel Aquaculture</h1>
           </div>
           <div>
-              <p className='text-center'>Memberikan berbagai pengetahuan menarik terkait akuakultur</p>
+              <p className='text-center p-5'>Memberikan berbagai pengetahuan menarik terkait akuakultur</p>
           </div>
       </div>
     </div>
