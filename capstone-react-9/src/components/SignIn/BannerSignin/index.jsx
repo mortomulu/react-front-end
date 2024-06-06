@@ -4,7 +4,7 @@ import signinBg from '../../../assets/signin-bg.jpeg';
 
 export default function BannerSignin({ children }) {
   return ( 
-    <div className="relative h-screen w-full flex-shrink-0"
+    <div className="relative h-screen bg-cover bg-center flex-shrink-0"
       style={{
         background: `
           linear-gradient(180deg, rgba(0, 0, 0, 0.20) 99.99%, rgba(0, 0, 0, 0.00) 100%),
@@ -41,11 +41,11 @@ export default function BannerSignin({ children }) {
           position: 'absolute',
           zIndex: 1000,
           padding: '20px', 
-          color: '#F2F2F2', 
+          color: '#D9D9D9', 
           fontFamily: 'Poppins', 
           fontSize: '14px', 
           fontStyle: 'normal', 
-          fontWeight: 600, 
+          fontWeight: 500, 
           lineHeight: '16px', 
         }}
       >

@@ -1,13 +1,13 @@
-const flowbite = require("flowbite-react/tailwind");
-
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    flowbite.content(),
+    "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
+    fontFamily: {
+      'Poppins': ['Poppins']
+    },
     colors : {
       "primary-10" : "#B8DBFF",
       "primary-30" : "#85C2FF",
@@ -39,11 +39,12 @@ export default {
       "darker-50" : "#1A2227",
       "darker-70" : "#1B1B1B",
       "darker-90" : "#0C0F0E",
+      "gradient-1" : "#A79F8F",
+      "gradient-2" : "#9FA199",
+      "gradient-3" : "#58A3DC",
+      "gradient-4" : "#163B83",
     },
     extend: {},
   },
-  plugins: [
-    flowbite.plugin(),
-  ],
-}
-
+  plugins: [require("flowbite/plugin")],
+};
