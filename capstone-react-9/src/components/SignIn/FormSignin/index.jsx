@@ -23,13 +23,22 @@ export default function FormSignin() {
       const response = await axios.post('https://blueharvest.irvansn.com/v1/login/admin', { email, password });
 
       if (response.status === 200) {
-        setMessage('Login berhasil!');
-        
+        setMessage('Berhasil login!');
       } else {
-        setMessage(response.data.message || 'Login gagal, coba lagi.');
+        setMessage(response.data.message || 'Invalid email or password');
       }
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Terjadi kesalahan, coba lagi.');
+      if (error.response) {
+        if (error.response.status === 400) {
+          setMessage('Input cannot be empty');
+        } else if (error.response.status === 401) {
+          setMessage('Invalid email or password');
+        } else {
+          setMessage(error.response.data.message || 'Terjadi kesalahan, coba lagi.');
+        }
+      } else {
+        setMessage('Terjadi kesalahan, coba lagi.');
+      }
     }
   };
 
