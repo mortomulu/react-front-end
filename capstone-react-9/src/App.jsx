@@ -1,13 +1,13 @@
-import HomePage from "./pages/Home/HomePage";
+// import HomePage from "./pages/Home/HomePage";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 
 
 function App() {
   return (
     <>
-      <HomePage />
-
- 
+      {/* <HomePage /> */}
+      <Dashboard/>
     </>
   );
 }
