@@ -1,7 +1,7 @@
 import React from 'react'
-import fotoProfil1 from '../../../assets/ProfilPengguna1.png'
-import fotoProfil2 from '../../../assets/ProfilPengguna2.png'
-import fotoProfil3 from '../../../assets/ProfilPengguna3.png'
+import fotoProfil1 from '../../../../assets/ProfilPengguna1.png'
+import fotoProfil2 from '../../../../assets/ProfilPengguna2.png'
+import fotoProfil3 from '../../../../assets/ProfilPengguna3.png'
 
 
 export default function CardTabelArtikel() {

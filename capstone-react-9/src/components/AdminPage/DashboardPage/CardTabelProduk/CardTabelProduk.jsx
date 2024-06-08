@@ -1,7 +1,6 @@
-import React from 'react'
-import fotoProduk1 from '../../../assets/FotoProduk1.png'
-import fotoProduk2 from '../../../assets/FotoProduk2.png'
-import fotoProduk3 from '../../../assets/FotoProduk3.png'
+import fotoProduk1 from '../../../../assets/FotoProduk1.png'
+import fotoProduk2 from '../../../../assets/FotoProduk2.png'
+import fotoProduk3 from '../../../../assets/FotoProduk3.png'
 
 export default function CardTabelProduk() {
   return (

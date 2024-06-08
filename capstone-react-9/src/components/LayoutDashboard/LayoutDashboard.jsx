@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import Sidebar from '../DashboardPage/Sidebar/sidebar'
-import Header from '../DashboardPage/Header/Header'
+import Sidebar from '../Organism/Sidebar/sidebar'
+import Header from '../Organism/Header/Header'
 
 
 export default function LayoutDashboard({ children }) {

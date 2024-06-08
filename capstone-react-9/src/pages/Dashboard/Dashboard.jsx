@@ -1,10 +1,9 @@
-import React from 'react'
-import DashboardPage from '../../components/DashboardPage'
+import AdminPage from '../../components/AdminPage/index'
 
 export default function Dashboard() {
   return (
     <div>
-        <DashboardPage/>
+        <AdminPage/>
     </div>
   )
 }
