@@ -20,7 +20,7 @@ export default function FormSignin() {
     setMessage('');
 
     try {
-      const response = await axios.post('https://blueharvest.irvansn.com/v1/login/admin', { email, password });
+      const response = await axios.post('', { email, password });
 
       if (response.status === 200) {
         setMessage('Berhasil login!');
