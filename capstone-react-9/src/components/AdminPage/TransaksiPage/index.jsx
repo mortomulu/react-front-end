@@ -1,9 +1,15 @@
 import React from 'react'
+import LayoutDashboard from '../../LayoutDashboard/LayoutDashboard'
+import GrafikPenjualan from './CardGrafikPenjualan'
+import TabelTransaksi from './TabelTransaksi'
 
 export default function TeansaksiPage() {
   return (
     <div>
-        <h1>Transaksi</h1>
+        <LayoutDashboard>
+            <GrafikPenjualan/>
+            <TabelTransaksi/>
+        </LayoutDashboard>
     </div>
   )
 }
