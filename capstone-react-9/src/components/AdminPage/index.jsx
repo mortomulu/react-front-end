@@ -1,4 +1,5 @@
 import DashboardPage from "./DashboardPage/index.jsx"
+import TransaksiPage from "./TransaksiPage/index.jsx"
 
 export default function adminPage() {
   return (
