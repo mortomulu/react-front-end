@@ -20,7 +20,7 @@ export default function FormSignin() {
     setMessage('');
 
     try {
-      const response = await axios.post('', { email, password });
+      const response = await axios.post(import.meta.env.VITE_SIGNIN_ADMIN_URL, { email, password });
 
       if (response.status === 200) {
         setMessage('Berhasil login!');
@@ -96,11 +96,8 @@ export default function FormSignin() {
                 <button type="submit" className="w-full text-white bg-primary-90 hover:bg-primary-90 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" style={{ marginBottom: '2rem' }}>Masuk</button>
                 {message && <p className="text-center text-red-500">{message}</p>}
                 <div className="flex justify-center">
-                  <a href="#" className="text-[14px] text-center font-[400px] hover:underline dark:text-primary-500" style={{ margin: 0 }}>Lupa Kata Sandi?</a>
+                  <a href="#" className="text-[14px] text-center font-[400px] hover:underline dark:text-primary-500" style={{ margin: 0, marginBottom: '5rem' }}>Lupa Kata Sandi?</a>
                 </div>
-                <p className="text-[16px] text-center font-[200x] text-gray-500 dark:text-gray-400" style={{ margin: 0, marginBottom: '3rem' }}>
-                  Tidak Punya Akun? <a href="#" className="font-medium text-primary-70 hover:underline dark:text-primary-500">Daftar Sekarang</a>
-                </p>
               </form>
             </div>
           </div>
