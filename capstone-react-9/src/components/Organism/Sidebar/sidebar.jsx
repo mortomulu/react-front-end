@@ -2,7 +2,7 @@ import LogoDashboard from '../../../assets/logoBlueHarvest.png'
 
 export default function sidebar() {
   return (
-    <div className='bg-primary-90 py-3 pl-7 text-netral-10' style={{width: `282px`, height: `1024px`}}>
+    <div className='bg-primary-90 py-3 pl-7 text-netral-10 fixed top-0 left-0 z-50' style={{width: `282px`, height: `1024px`}}>
         <div className='flex items-center gap-1' style={{ width: '282px' }}>
             <div>
                 <img src={LogoDashboard} alt="" style={{ width: '82px', height: '109px' }}/>

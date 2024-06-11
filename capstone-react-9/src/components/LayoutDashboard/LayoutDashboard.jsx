@@ -5,16 +5,17 @@ import Header from '../Organism/Header/Header'
 
 export default function LayoutDashboard({ children }) {
   return (
-        <div className='flex'>
-            <Sidebar/>
-            <div>
-                <Header/>
-                <div className='flex flex-col px-8 py-4 gap-4'>
+    <div className="flex">
+      <Sidebar />
+      <div>
+        <Header />
+        {/* <div className='flex flex-col px-8 py-4 gap-4'>
                     {children}
-                </div>
-            </div>
-        </div>
-  )
+                </div> */}
+        <div className="flex flex-col pl-80 pt-32">{children}</div>
+      </div>
+    </div>
+  );
 }
 
 LayoutDashboard.propTypes = {
