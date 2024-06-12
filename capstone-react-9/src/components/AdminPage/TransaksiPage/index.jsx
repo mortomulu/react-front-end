@@ -8,7 +8,9 @@ export default function TeansaksiPage() {
     <div className='flex flex-col'style={{ backgroundColor: '#E6F6FF' }}>
         <LayoutDashboard>
             <GrafikPenjualan/>
+            <div className='flex flex-col' style={{marginRight: '100px'}}>
             <TabelTransaksi/>           
+            </div>
         </LayoutDashboard>
     </div>
   )
