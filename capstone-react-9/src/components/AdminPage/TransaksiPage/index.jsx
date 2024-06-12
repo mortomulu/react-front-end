@@ -5,10 +5,10 @@ import TabelTransaksi from './TabelTransaksi'
 
 export default function TeansaksiPage() {
   return (
-    <div>
+    <div className='flex flex-col'style={{ backgroundColor: '#E6F6FF' }}>
         <LayoutDashboard>
             <GrafikPenjualan/>
-            <TabelTransaksi/>
+            <TabelTransaksi/>           
         </LayoutDashboard>
     </div>
   )
