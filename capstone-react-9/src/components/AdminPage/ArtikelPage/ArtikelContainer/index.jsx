@@ -1,11 +1,11 @@
-import React from "react";
-import ProductTable from "./ProductTable";
+import React from "react"
+import ArticleTable from "./ArticleTable"
 
-const ContainerProduct = () => {
-  return (
-    <div className="bg-white p-9 mr-8 flex flex-col gap-[38px] mb-8">
+const ArtikelContainer = () => {
+    return (
+        <div className="bg-white p-9 mr-8 flex flex-col gap-[38px] mb-8">
       <div className="flex justify-between">
-        <h1 className="text-[28px] font-semibold">Produk</h1>
+        <h1 className="text-[28px] font-semibold">Artikel</h1>
         <div className="flex items-center rounded-lg py-3 px-6 gap-[10px] bg-primary-90">
           <svg
             width="20"
@@ -30,12 +30,12 @@ const ContainerProduct = () => {
               </clipPath>
             </defs>
           </svg>
-          <button className="text-white">Tambah Produk</button>
+          <button className="text-white">Tambah Artikel</button>
         </div>
       </div>
-      <ProductTable/>
+      <ArticleTable/>
     </div>
-  );
-};
+    )
+}
 
-export default ContainerProduct;
+export default ArtikelContainer

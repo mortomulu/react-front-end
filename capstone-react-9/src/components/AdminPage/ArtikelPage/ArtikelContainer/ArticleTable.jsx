@@ -3,263 +3,169 @@ import React, { useState } from "react";
 const Product = [
   {
     no: "1",
-    produk: "Udang",
-    harga: "30.000",
-    persediaan: "60kg",
-    terjual: "30kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "26/4/2024",
   },
   {
     no: "2",
-    produk: "Ikan",
-    harga: "25.000",
-    persediaan: "80kg",
-    terjual: "40kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "27/4/2024",
   },
   {
     no: "3",
-    produk: "Kerang",
-    harga: "20.000",
-    persediaan: "50kg",
-    terjual: "25kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "28/4/2024",
   },
   {
     no: "4",
-    produk: "Kepiting",
-    harga: "35.000",
-    persediaan: "70kg",
-    terjual: "35kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "29/4/2024",
   },
   {
     no: "5",
-    produk: "Lobster",
-    harga: "40.000",
-    persediaan: "30kg",
-    terjual: "15kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "30/4/2024",
   },
   {
     no: "6",
-    produk: "Cumi-cumi",
-    harga: "22.000",
-    persediaan: "90kg",
-    terjual: "45kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "1/5/2024",
   },
   {
     no: "7",
-    produk: "Gurita",
-    harga: "28.000",
-    persediaan: "55kg",
-    terjual: "27kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "2/5/2024",
   },
   {
     no: "8",
-    produk: "Bawal",
-    harga: "18.000",
-    persediaan: "100kg",
-    terjual: "50kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "3/5/2024",
   },
   {
     no: "9",
-    produk: "Salmon",
-    harga: "50.000",
-    persediaan: "40kg",
-    terjual: "20kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "4/5/2024",
   },
   {
     no: "10",
-    produk: "Tuna",
-    harga: "45.000",
-    persediaan: "60kg",
-    terjual: "30kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "5/5/2024",
   },
   {
     no: "11",
-    produk: "Sarden",
-    harga: "15.000",
-    persediaan: "80kg",
-    terjual: "40kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "6/5/2024",
   },
   {
     no: "12",
-    produk: "Lele",
-    harga: "12.000",
-    persediaan: "120kg",
-    terjual: "60kg",
+    judul: "Tata Cara Budidaya Perikanan",
+
     tanggal: "7/5/2024",
   },
   {
     no: "13",
-    produk: "Patin",
-    harga: "13.000",
-    persediaan: "110kg",
-    terjual: "55kg",
+    judul: "Tata Cara Budidaya Perikanan",
+
     tanggal: "8/5/2024",
   },
   {
     no: "14",
-    produk: "Bandeng",
-    harga: "14.000",
-    persediaan: "70kg",
-    terjual: "35kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "9/5/2024",
   },
   {
     no: "15",
-    produk: "Gabus",
-    harga: "16.000",
-    persediaan: "65kg",
-    terjual: "32kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "10/5/2024",
   },
   {
     no: "16",
-    produk: "Belut",
-    harga: "19.000",
-    persediaan: "75kg",
-    terjual: "37kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "11/5/2024",
   },
   {
     no: "17",
-    produk: "Kakap",
-    harga: "32.000",
-    persediaan: "85kg",
-    terjual: "42kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "12/5/2024",
   },
   {
     no: "18",
-    produk: "Tongkol",
-    harga: "17.000",
-    persediaan: "50kg",
-    terjual: "25kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "13/5/2024",
   },
   {
     no: "19",
-    produk: "Mujair",
-    harga: "11.000",
-    persediaan: "95kg",
-    terjual: "47kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "14/5/2024",
   },
   {
     no: "20",
-    produk: "Bawal",
-    harga: "21.000",
-    persediaan: "60kg",
-    terjual: "30kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "15/5/2024",
   },
   {
     no: "21",
-    produk: "Salem",
-    harga: "25.000",
-    persediaan: "70kg",
-    terjual: "35kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "16/5/2024",
   },
   {
     no: "22",
-    produk: "Tongkol",
-    harga: "23.000",
-    persediaan: "40kg",
-    terjual: "20kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "17/5/2024",
   },
   {
     no: "23",
-    produk: "Tenggiri",
-    harga: "27.000",
-    persediaan: "65kg",
-    terjual: "32kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "18/5/2024",
   },
   {
     no: "24",
-    produk: "Kerapu",
-    harga: "29.000",
-    persediaan: "50kg",
-    terjual: "25kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "19/5/2024",
   },
   {
     no: "25",
-    produk: "Bawal",
-    harga: "24.000",
-    persediaan: "80kg",
-    terjual: "40kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "20/5/2024",
   },
   {
     no: "26",
-    produk: "Salem",
-    harga: "26.000",
-    persediaan: "70kg",
-    terjual: "35kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "21/5/2024",
   },
   {
     no: "27",
-    produk: "Tenggiri",
-    harga: "28.000",
-    persediaan: "55kg",
-    terjual: "27kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "22/5/2024",
   },
   {
     no: "28",
-    produk: "Kerapu",
-    harga: "30.000",
-    persediaan: "60kg",
-    terjual: "30kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "23/5/2024",
   },
   {
     no: "29",
-    produk: "Kakap",
-    harga: "33.000",
-    persediaan: "65kg",
-    terjual: "32kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "24/5/2024",
   },
   {
     no: "30",
-    produk: "Patin",
-    harga: "14.000",
-    persediaan: "110kg",
-    terjual: "55kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "25/5/2024",
   },
   {
     no: "31",
-    produk: "Bandeng",
-    harga: "15.000",
-    persediaan: "70kg",
-    terjual: "35kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "26/5/2024",
   },
   {
     no: "32",
-    produk: "Gabus",
-    harga: "18.000",
-    persediaan: "65kg",
-    terjual: "32kg",
+    judul: "Tata Cara Budidaya Perikanan",
     tanggal: "27/5/2024",
   },
 ];
 
-const ProductTable = () => {
+const ArticleTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -279,38 +185,25 @@ const ProductTable = () => {
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-black">
-            <th className="text-start p-4">No</th>
-            <th className="text-start p-4">Produk</th>
-            <th className="text-start p-4">Harga</th>
-            <th className="text-start p-4">Persediaan</th>
-            <th className="text-start p-4">Terjual</th>
+            <th className="text-start p-4 w-28">No</th>
+            <th className="text-start p-4 w-[600px] ">Judul</th>
             <th className="text-start p-4">Tanggal</th>
             <th className="text-start p-4">Aksi</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colSpan="7" style={{ height: "19px" }}></td>
-          </tr>
-        </tbody>
-        <tbody>
           {currentItems.map((item, index) => (
             <tr key={index}>
-              <td className="border-b border-black py-[12px] px-4 text-lg ">
+              <td className="border-b border-black py-6 px-4 text-lg ">
                 {item.no}
               </td>
-              <td className="border-b border-black py-2 px-4 text-lg ">{item.produk}</td>
-              <td className="border-b border-black py-2 px-4 text-lg">{item.harga}</td>
-              <td className="border-b border-black py-2 px-4 text-lg">
-                {item.persediaan}
+              <td className="border-b border-black py-6 px-4 text-lg ">
+                {item.judul}
               </td>
-              <td className="border-b border-black py-2 px-4 text-lg">
-                {item.terjual}
-              </td>
-              <td className="border-b border-black py-2 px-4 text-lg">
+              <td className="border-b border-black py-6 px-4 text-lg">
                 {item.tanggal}
               </td>
-              <td className="border-b border-black py-2 pl-7 text-lg">
+              <td className="border-b border-black py-6 pl-7 text-lg">
                 <button className="text-blue-500 hover:underline">
                   <svg
                     width="6"
@@ -410,4 +303,4 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-export default ProductTable;
+export default ArticleTable;
