@@ -1,9 +1,10 @@
 import LayoutDashboard from "../../LayoutDashboard/LayoutDashboard";
+import ContainerProduct from "./ProductContainer";
 
 const ProdukPage = () => {
     return (
         <LayoutDashboard>
-            <h1>Produk Page</h1>
+            <ContainerProduct/>
         </LayoutDashboard>
     )
 }
