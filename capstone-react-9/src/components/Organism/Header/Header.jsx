@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <div className="flex bg-primary-90 p-6 text-netral-10 items-center justify-between h-[96px] w-full max-w-screen mx-auto fixed top-0 left-0 right-0 pl-[350px]">
+    <div className="z-30 flex bg-primary-90 p-6 text-netral-10 items-center justify-between h-[96px] w-full max-w-screen mx-auto fixed top-0 left-0 right-0 pl-[350px]">
       <div>
         <h1 className="text-2xl font-semibold">Selamat Datang, Justin!</h1>
       </div>
