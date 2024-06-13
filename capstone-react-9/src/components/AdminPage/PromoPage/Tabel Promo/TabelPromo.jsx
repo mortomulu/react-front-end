@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, Modal } from "flowbite-react";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 
@@ -8,7 +8,6 @@ export default function TabelTransaksi() {
   const [popupVisible, setPopupVisible] = useState(null);
   const popupRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     code: "",
