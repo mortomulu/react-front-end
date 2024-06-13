@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
@@ -11,11 +11,11 @@ export default function Header() {
           <input
             type="text"
             style={{ width: "305px" }}
-            className="py-3 px-4 rounded-lg placeholder-primary-90 placeholder-b"
+            className="py-3 px-4 rounded-lg text-primary-70 font-medium placeholder-primary-90 placeholder-b focus:ring-primary-50 focus:border-primary-50"
             placeholder="Pencarian Produk"
           />
         </div>
-        <div
+        <Link to="/chat"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -31,8 +31,8 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
-        <div
+        </Link>
+        <Link to="/notifications"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -48,8 +48,8 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
-        <div
+        </Link>
+        <Link to="/Profile"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -65,7 +65,7 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
+        </Link>
       </div>
     </div>
   );
