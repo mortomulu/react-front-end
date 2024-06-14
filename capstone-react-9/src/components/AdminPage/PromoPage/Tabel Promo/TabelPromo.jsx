@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Pagination from "../../../Organism/Pagination/Pagination";
 
-
-export default function TabelTransaksi() {
+export default function TabelPromo() {
   const [promos, setPromos] = useState([]);
   const [popupVisible, setPopupVisible] = useState(null);
   const popupRef = useRef(null);
@@ -15,6 +15,18 @@ export default function TabelTransaksi() {
     status: "",
     id: null,
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(promos.length / itemsPerPage);
+  const currentItems = promos.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,18 +92,18 @@ export default function TabelTransaksi() {
     }
   };
 
-    const handleDelete = async (promoId) => {
-      try {
-        const response = await axios.delete(
-          `https://blueharvest.irvansn.com/v1/promos/${promoId}`
-        );
-        setPromos((prevPromos) =>
-          prevPromos.filter((promo) => promo.id !== promoId)
-        );
-      } catch (error) {
-        console.error("Error deleting promo:", error);
-      }
-    };
+  const handleDelete = async (promoId) => {
+    try {
+      const response = await axios.delete(
+        `https://blueharvest.irvansn.com/v1/promos/${promoId}`
+      );
+      setPromos((prevPromos) =>
+        prevPromos.filter((promo) => promo.id !== promoId)
+      );
+    } catch (error) {
+      console.error("Error deleting promo:", error);
+    }
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -102,116 +114,128 @@ export default function TabelTransaksi() {
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm text-left rtl:text-right text-[#1B1B1B]">
-          <thead className="text-xs text-[#1B1B1B] uppercase border-b border-[#8C8C8C]">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                No
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Nama Promo
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Kode Voucher
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Status
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Aksi
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {promos.map((promo, index) => (
-              <tr key={promo.id} className="border-b border-[#8C8C8C]">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                >
-                  {index + 1}
+      {promos.length === 0 ? (
+        <div className="text-center py-4">
+          <p className="text-gray-500 text-lg">Data belum ada</p>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left rtl:text-right text-[#1B1B1B]">
+            <thead className="text-xs text-[#1B1B1B] uppercase border-b border-[#8C8C8C]">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  No
                 </th>
-                <td className="px-6 py-4">{promo.name}</td>
-                <td className="px-6 py-4">{promo.code}</td>
-                <td className="px-6 py-4">
-                  <span
-                    className={`${
-                      promo.status === "available"
-                        ? "bg-[#74F1C4]"
-                        : "bg-[#FF3B3B]"
-                    } inline-block px-2 py-1 rounded-2xl`}
-                  >
-                    {promo.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 flex space-x-2 relative">
-                  <button
-                    onClick={() => handleIconClick(promo.id)}
-                    className="text-gray-800"
-                  >
-                    <svg
-                      className="w-6 h-6 text-gray-800"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeWidth="2.5"
-                        d="M12 6h.01M12 12h.01M12 18h.01"
-                      />
-                    </svg>
-                  </button>
-                  {popupVisible === promo.id && (
-                    <div
-                      ref={popupRef}
-                      className="absolute -top-10 right-14 bg-white border border-gray-300 rounded-lg shadow-lg z-10"
-                    >
-                      <ul>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          Lihat
-                        </li>
-                        <li
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleEditClick(promo)}
-                        >
-                          Edit
-                        </li>
-                        <li>
-                          <button
-                            onClick={() =>
-                              Swal.fire({
-                                title: "Hapus File?",
-                                text: "Konfirmasi ini akan menghapus file yang dipilih dan semua data terkait secara permanen. Tindakan ini tidak dapat dibatalkan.",
-                                showCancelButton: true,
-                                confirmButtonColor: "#0075EB",
-                                confirmButtonText: "Hapus",
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  handleDelete(promo.id);
-                                }
-                              })
-                            }
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
-                          >
-                            Hapus
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </td>
+                <th scope="col" className="px-6 py-3">
+                  Nama Promo
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Kode Voucher
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Aksi
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
+            </thead>
+            <tbody>
+              {currentItems.map((promo, index) => (
+                <tr key={promo.id} className="border-b border-[#8C8C8C]">
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    {(currentPage - 1) * itemsPerPage + index + 1}
+                  </th>
+                  <td className="px-6 py-4">{promo.name}</td>
+                  <td className="px-6 py-4">{promo.code}</td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={`${
+                        promo.status === "available"
+                          ? "bg-[#74F1C4]"
+                          : "bg-[#FF3B3B]"
+                      } inline-block px-2 py-1 rounded-2xl`}
+                    >
+                      {promo.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 flex space-x-2 relative">
+                    <button
+                      onClick={() => handleIconClick(promo.id)}
+                      className="text-gray-800"
+                    >
+                      <svg
+                        className="w-6 h-6 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeWidth="2.5"
+                          d="M12 6h.01M12 12h.01M12 18h.01"
+                        />
+                      </svg>
+                    </button>
+                    {popupVisible === promo.id && (
+                      <div
+                        ref={popupRef}
+                        className="absolute -top-10 right-14 bg-white border border-gray-300 rounded-lg shadow-lg z-10"
+                      >
+                        <ul>
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            Lihat
+                          </li>
+                          <li
+                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => handleEditClick(promo)}
+                          >
+                            Edit
+                          </li>
+                          <li>
+                            <button
+                              onClick={() =>
+                                Swal.fire({
+                                  title: "Hapus File?",
+                                  text: "Konfirmasi ini akan menghapus file yang dipilih dan semua data terkait secara permanen. Tindakan ini tidak dapat dibatalkan.",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#0075EB",
+                                  confirmButtonText: "Hapus",
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                    handleDelete(promo.id);
+                                  }
+                                })
+                              }
+                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
+                            >
+                              Hapus
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="mt-[35px] flex justify-end">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </div>
+      )}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg w-[50%] p-8">

@@ -12,6 +12,9 @@ const PromoPage = () => {
     status: "",
     amount: ""
   });
+  
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +28,7 @@ const PromoPage = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
     }
+    setIsModalOpen(false)
   };
 
   const handleOpenModal = () => {
