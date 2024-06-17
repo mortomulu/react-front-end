@@ -10,6 +10,7 @@ import Monitoring from "./pages/Dashboard/Monitoring";
 import Produk from "./pages/Dashboard/Produk";
 import Promo from "./pages/Dashboard/Promo";
 import Tambak from "./pages/Dashboard/Tambak";
+import Chat from "./pages/Dashboard/Chat";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/produk" element={<Produk />} />   
         <Route path="/promo" element={<Promo />} />   
         <Route path="/tambak" element={<Tambak />} />   
+        <Route path="/chat" element={<Chat />} />   
       </Routes>
     </Router>
   );

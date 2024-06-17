@@ -1,8 +1,8 @@
-import React from "react";
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
-    <div className="flex bg-primary-90 p-6 text-netral-10 items-center justify-between h-[96px] w-full max-w-screen mx-auto fixed top-0 left-0 right-0 pl-[350px]">
+    <div className="z-30 flex bg-primary-90 p-6 text-netral-10 items-center justify-between h-[96px] w-full max-w-screen mx-auto fixed top-0 left-0 right-0 pl-[350px]">
       <div>
         <h1 className="text-2xl font-semibold">Selamat Datang, Justin!</h1>
       </div>
@@ -11,11 +11,11 @@ export default function Header() {
           <input
             type="text"
             style={{ width: "305px" }}
-            className="py-3 px-4 rounded-lg placeholder-primary-90 placeholder-b"
+            className="py-3 px-4 rounded-lg text-primary-70 font-medium placeholder-primary-90 placeholder-b focus:ring-primary-50 focus:border-primary-50"
             placeholder="Pencarian Produk"
           />
         </div>
-        <div
+        <Link to="/chat"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -31,8 +31,8 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
-        <div
+        </Link>
+        <Link to="/notifications"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -48,8 +48,8 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
-        <div
+        </Link>
+        <Link to="/Profile"
           className="flex justify-center items-center  h-12 w-12 bg-netral-10 rounded-full"
           style={{ borderRadius: "" }}
         >
@@ -65,7 +65,7 @@ export default function Header() {
               fill="#0075EB"
             />
           </svg>
-        </div>
+        </Link>
       </div>
     </div>
   );

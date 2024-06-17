@@ -10,16 +10,30 @@ export default function TabelTransaksi() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6ImIwMWI0ZjkwLWEyNGYtNDc4YS1hYTQ1LTM4MTM1YWMyNDIwYiIsIkVtYWlsIjoiaXJ2YW4tc3VyeWEtYWRtaW4tMkBibHVlaGFydmVzdC5jb20iLCJGdWxsTmFtZSI6IklydmFuIiwiUm9sZSI6ImFkbWluIiwiZXhwIjoxNzE4MjU0NjI5fQ.XcYNXuiKFB9QQXMws1f0qAk_-3eAg5GxXX2Hi6Vx-ks'; // Ganti dengan token yang valid
-
-        const response = await axios.get('https://blueharvest.irvansn.com/v1/transactions', {
-          headers: {
-            'Authorization': `Bearer ${token}`
+        const token = '';
+        let allTransactions = [];
+        let page = 1;
+        let totalPages = 1;
+  
+        // Loop through all pages
+        while (page <= totalPages) {
+          const response = await axios.get(`https://blueharvest.irvansn.com/v1/transactions?page=${page}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+  
+          if (response.data.status) {
+            const transactions = response.data.data.transactions;
+            allTransactions = [...allTransactions, ...transactions];
+  
+            // Update total pages if available in the response
+            totalPages = response.data.data.totalPages || totalPages;
+            page++;
           }
-        });
+        }
         
-        setTransactions(response.data.data.transactions);
-        console.log(response);
+        setTransactions(allTransactions);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -27,35 +41,29 @@ export default function TabelTransaksi() {
     fetchData();
   }, []);
 
-  // Fungsi untuk mengubah halaman
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Fungsi untuk halaman sebelumnya
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Fungsi untuk halaman berikutnya
   const nextPage = () => {
     if (currentPage < Math.ceil(transactions.length / transactionsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Hitung data yang ditampilkan per halaman
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
   const currentTransactions = transactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
 
-  // Buat nomor halaman
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(transactions.length / transactionsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  // Mengatur logika untuk menampilkan 4 tombol pagination
   const renderPageNumbers = () => {
     const maxPageNumbers = 4;
     const totalPages = pageNumbers.length;
@@ -85,10 +93,23 @@ export default function TabelTransaksi() {
     return pageNumbersToShow;
   };
 
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'PAID':
+        return 'text-draker-70 bg-succes-30 border-green-300';
+      case 'UNPAID':
+        return 'text-draker-70 bg-warning-30 border-warning-70';
+      case 'CANCEL':
+        return 'text-draker-70 bg-error-30 border-error-70';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <div className="relative overflow-x-auto mt-3 bg-white mb-3 shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className="relative mb-3 overflow-x-auto mt-3 bg-white shadow-md sm:rounded-lg">
+      <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" style={{ width: '1162px', tableLayout: 'auto' }}>
+        <thead className="text-xs border-b text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">No</th>
             <th scope="col" className="px-6 py-3">Nama</th>
@@ -112,49 +133,79 @@ export default function TabelTransaksi() {
               <td className="px-6 py-4">
                 {transaction.transaction_details.length > 0 ? transaction.transaction_details[0].total_price : 'N/A'}
               </td>
-              <td className="px-6 py-4">{transaction.payment.status}</td>
+              <td className="px-6 py-4">
+                <span className={`inline-block px-3 py-1 rounded-full border ${getStatusClass(transaction.payment.status)}`}>
+                  {transaction.payment.status}
+                </span>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="flex justify-end mt-4 mr-3 mb-3">
-        <nav aria-label="Page navigation example">
-          <ul className="flex items-center -space-x-px h-8 text-sm">
-            <li>
-              <button 
-                onClick={prevPage} 
-                className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                <span className="sr-only">Previous</span>
-                <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 1 1 5l4 4"/>
-                </svg>
-              </button>
-            </li>
-            {renderPageNumbers().map(number => (
-              <li key={number}>
-                <button 
-                  onClick={() => paginate(number)} 
-                  className={`flex items-center justify-center px-3 h-8 leading-tight ${currentPage === number ? 'text-blue-600 bg-blue-50 border-blue-300' : 'text-gray-500 bg-white border-gray-300 border'} hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
-                >
-                  {number}
-                </button>
-              </li>
-            ))}
-            <li>
-              <button 
-                onClick={nextPage} 
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-              >
-                <span className="sr-only">Next</span>
-                <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4"/>
-                </svg>
-              </button>
-            </li>
-          </ul>
-        </nav>
+      <div className="mt-[10px] flex justify-end">
+        <Pagination 
+          currentPage={currentPage} 
+          totalPages={pageNumbers.length} 
+          onPageChange={paginate} 
+          prevPage={prevPage} 
+          nextPage={nextPage} 
+          renderPageNumbers={renderPageNumbers} 
+        />
       </div>
+    </div>
+  );
+}
+
+const Pagination = ({ currentPage, totalPages, onPageChange, prevPage, nextPage, renderPageNumbers }) => {
+  return (
+    <div className="flex items-center space-x-2 border p-3 rounded-xl mr-3 mb-3">
+      <button
+        onClick={prevPage}
+        className="p-2 border rounded-lg"
+        disabled={currentPage <= 1}
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12.1782 16.1148C12.0095 16.1148 11.8407 16.0586 11.7282 15.918L5.37197 9.44922C5.11885 9.19609 5.11885 8.80234 5.37197 8.54922L11.7282 2.08047C11.9813 1.82734 12.3751 1.82734 12.6282 2.08047C12.8813 2.33359 12.8813 2.72734 12.6282 2.98047L6.72197 8.99922L12.6563 15.018C12.9095 15.2711 12.9095 15.6648 12.6563 15.918C12.4876 16.0305 12.347 16.1148 12.1782 16.1148Z"
+            fill="#637381"
+          />  
+        </svg>
+      </button>
+      {renderPageNumbers().map((pageNumber) => (
+        <button
+          key={pageNumber}
+          onClick={() => onPageChange(pageNumber)}
+          className={`px-3 py-1 border rounded-lg ${
+            currentPage === pageNumber ? "bg-blue-500 text-white" : ""
+          }`}
+        >
+          {pageNumber}
+        </button>
+      ))}
+      <button
+        onClick={nextPage}
+        className="p-2 border rounded-lg"
+        disabled={currentPage >= totalPages}
+      >
+        <svg
+          width="8"
+          height="16"
+          viewBox="0 0 8 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.821973 15.1148C0.653223 15.1148 0.512598 15.0586 0.371973 14.9461C0.118848 14.693 0.118848 14.2992 0.371973 14.0461L6.27822 7.99922L0.371973 1.98047C0.118848 1.72734 0.118848 1.33359 0.371973 1.08047C0.625098 0.827344 1.01885 0.827344 1.27197 1.08047L7.62822 7.54922C7.88135 7.80234 7.88135 8.19609 7.62822 8.44922L1.27197 14.918C1.15947 15.0305 0.990723 15.1148 0.821973 15.1148Z"
+            fill="#637381"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
