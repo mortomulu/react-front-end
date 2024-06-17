@@ -5,6 +5,7 @@ import Dotted from "../../../assets/dotted.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
+import { getToken } from "../../../service/accessCookie";
 
 export default function FormSignin() {
   const [email, setEmail] = useState("");
