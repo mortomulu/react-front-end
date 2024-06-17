@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Product = [
   {
@@ -166,12 +166,13 @@ const Product = [
 ];
 
 const ArticleTable = () => {
+  const [article, setArticle] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  const totalPages = Math.ceil(Product.length / itemsPerPage);
+  const totalPages = Math.ceil(article.length / itemsPerPage);
 
-  const currentItems = Product.slice(
+  const currentItems = article.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -179,6 +180,23 @@ const ArticleTable = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    const fetchArticel = async () => {
+      try {
+        const response = await fetch(
+          "https://blueharvest.irvansn.com/v1/articles"
+        );
+        const data = await response.json();
+        setArticle(data.data.articles)
+      } catch (error) {
+        console.log("error fetch artikel");
+      }
+    };
+    fetchArticel();
+  }, []);
+
+  console.log(article)
 
   return (
     <div className="overflow-x-auto">
@@ -195,13 +213,13 @@ const ArticleTable = () => {
           {currentItems.map((item, index) => (
             <tr key={index}>
               <td className="border-b border-black py-6 px-4 text-lg ">
-                {item.no}
+                {index + 1}
               </td>
               <td className="border-b border-black py-6 px-4 text-lg ">
-                {item.judul}
+                {item.title}
               </td>
               <td className="border-b border-black py-6 px-4 text-lg">
-                {item.tanggal}
+                {Product[0].tanggal}
               </td>
               <td className="border-b border-black py-6 pl-7 text-lg">
                 <button className="text-blue-500 hover:underline">
