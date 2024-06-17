@@ -11,6 +11,7 @@ import Produk from "./pages/Dashboard/Produk";
 import Promo from "./pages/Dashboard/Promo";
 import Tambak from "./pages/Dashboard/Tambak";
 import Chat from "./pages/Dashboard/Chat";
+import PrivateRoute from "./Routes/PrivateRoute";
 
 function App() {
   return (
@@ -18,16 +19,18 @@ function App() {
       <Routes>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/transaksi" element={<Transaksi />} />
-        <Route path="/artikel" element={<Artikel />} />     
-        <Route path="/data-user" element={<DataUser />} />     
-        <Route path="/keluar" element={<Keluar />} />   
-        <Route path="/monitoring" element={<Monitoring />} />   
-        <Route path="/produk" element={<Produk />} />   
-        <Route path="/promo" element={<Promo />} />   
-        <Route path="/tambak" element={<Tambak />} />   
-        <Route path="/chat" element={<Chat />} />   
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/transaksi" element={<Transaksi />} />
+          <Route path="/artikel" element={<Artikel />} />
+          <Route path="/data-user" element={<DataUser />} />
+          <Route path="/keluar" element={<Keluar />} />
+          <Route path="/monitoring" element={<Monitoring />} />
+          <Route path="/produk" element={<Produk />} />
+          <Route path="/promo" element={<Promo />} />
+          <Route path="/tambak" element={<Tambak />} />
+          <Route path="/chat" element={<Chat />} />
+        </Route>
       </Routes>
     </Router>
   );
