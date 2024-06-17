@@ -4,12 +4,14 @@ import Logo from "../../../assets/blueharvest-logo.png";
 import Dotted from "../../../assets/dotted.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
 
 export default function FormSignin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -29,6 +31,7 @@ export default function FormSignin() {
         const token = response.data.data.user_token;
         document.cookie = `token=${token}; path=/; secure; SameSite=Strict`;
         setMessage("Berhasil login!");
+        navigate('/dashboard')
       } else {
         setMessage(response.data.message || "Invalid email or password");
       }
